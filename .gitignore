@@ -1,0 +1,47 @@
+# ---------------- 构建产物 ----------------
+# dist 是 PyInstaller 的 onedir 输出，约 128MB；build 是中间产物，约 16MB。
+# 这些都能用 build.ps1 从源码重新生成，进仓库只会把体积撑爆且天天冲突。
+build/
+dist/
+*.pyz
+
+# ---------------- 虚拟环境 ----------------
+# .venv 约 312MB，里面有 PySide6 等依赖，用 requirements.txt 重建即可。
+.venv/
+venv/
+env/
+
+# ---------------- Python 缓存 ----------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.mypy_cache/
+
+# ---------------- 本机工作数据 ----------------
+# .workbuddy 是 AI 会话的工作记忆，含本机绝对路径、用户名、调试记录。
+# 它属于本机，不属于代码库。
+.workbuddy/
+
+# ---------------- 密钥与配置 ----------------
+# 阿里云 AccessKey 一旦提交到公开仓库，即使立刻删除，Git 历史里也永久留着，
+# 且 GitHub 上有机器人专门扫这类密钥，几分钟内就会被拿去刷账单。
+#
+# 产品本身已经把配置放到 %APPDATA%\VoiceType\（不在项目目录内），
+# 这里再堵一道：万一有人在目录里落了配置文件，也不会被 add 进去。
+config.json
+*.key
+*.pem
+credentials.json
+.env
+.env.*
+
+# ---------------- 日志与截图 ----------------
+*.log
+logs/
+
+# ---------------- 操作系统 ----------------
+Thumbs.db
+desktop.ini
+.DS_Store
